@@ -9,7 +9,7 @@ import android.widget.Scroller;
  * 重写scroller来控制viewpager的滑动速度
  */
 public class FixedSpeedScroller extends Scroller {
-    private int mDuration = 1500;
+    private int mDuration = 400;//默认的轮番时间为400ms
 
     public FixedSpeedScroller(Context context) {
         super(context);
@@ -31,6 +31,9 @@ public class FixedSpeedScroller extends Scroller {
         super.startScroll(startX, startY, dx, dy, mDuration);
     }
 
+    /**外界赋值轮番时间
+     * @param time
+     */
     public void setmDuration(int time) {
         mDuration = time;
     }

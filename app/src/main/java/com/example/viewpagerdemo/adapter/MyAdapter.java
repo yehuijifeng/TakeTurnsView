@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by 浩 on 2016/8/30.
+ * 处理viewpager的轮番适配器
  */
 public class MyAdapter extends PagerAdapter {
 
@@ -42,18 +43,21 @@ public class MyAdapter extends PagerAdapter {
      */
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        if (mImageViews.size() < 1) return;
+        if (mImageViews==null||mImageViews.size() < 1) return;
         container.removeView(mImageViews.get(position % mImageViews.size()));
 
     }
 
     /**
      * 添加每一个item
+     * 最重要的算法自行理解，比较简单
      */
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        if (mImageViews.size() < 1) return null;
+
+        if (mImageViews==null||mImageViews.size() < 1) return null;
         try {
+            //有时候添加的视图会未没上个父view移除，所以这里抛出异常
             container.addView(mImageViews.get(position % mImageViews.size()), 0);
         } catch (Exception e) {
             // handler something
